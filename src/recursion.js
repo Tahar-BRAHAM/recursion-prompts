@@ -29,23 +29,55 @@ var sum = function(array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {
+
+var arraySum = function(array){
+	var result = 0 ; 
+	array.forEach((element)=>{
+		if(Array.isArray(element)){
+			result+=arraySum(element);
+		}else{
+			result+=element;
+		}
+	})
+	return result; 
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+	if(n==0){
+		return true;
+	}
+	if(n==1){
+		return false ;
+	}else if(n==2){
+		return true ;
+	}else if(n>0){
+		return isEven(n-2)
+	}else{
+		return isEven(-n)
+	}
+
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+	var sum = 0 ;
+	if(n===0){
+		return 0
+	}else if(n===1){
+		sum+=n-1
+	}else{
+		return n + sumBelow(n-1)
+	}
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
 };
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
